@@ -1,0 +1,40 @@
+.closebutton {
+    cursor: pointer;
+    background-color: orangered;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    width: 4px;
+    height: 12px;
+    margin: 4px;
+}
+
+.openbutton {
+    font-size: 80;
+    cursor: pointer;
+}
+
+.window {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: fit-content;
+    border: thick double;
+    border-radius: 12px;
+    box-sizing: border-box;
+    display: none;
+    flex-direction: column;
+    background-color: #6d9ac7;
+}
+
+.windowheader {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(0, 24, 62, 0.5);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-weight: bolder;
+    cursor: grab; /* Visual cue that it is draggable */
+    user-select: none;
+    padding: 5px 20px;
+}

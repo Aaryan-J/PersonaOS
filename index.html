@@ -4,36 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxanium">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
     <title>PersonaOS</title>
 </head>
-<body style="font-family: 'Oxanium'; color: whitesmoke; background-color: #6d9ac7; margin: 0; overflow: hidden; display: flex; justify-content: center; align-items: ;">
+<body style="font-family: 'Oxanium'; color: whitesmoke; background-color: #6d9ac7; margin: 0; overflow: hidden; display: flex; margin: 10px;">
+
+    <div style="display: flex;"> <!-- Open Button for Welcome Screen -->
+        <p class="openbutton" id="welcomeopen">
+                PersonaOS
+        </p>
+    </div>
 
     <div id="welcome"
-        style="
-        position: absolute;
-        width: fit-content;
-        border: thick double;
-        border-radius: 12px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        background-color: #6d9ac7;"> <!-- Added background color so text doesn't overlap transparently -->
+        class="window"> <!-- Added background color so text doesn't overlap transparently -->
 
-        <!-- Moved the header ID here so you can drag using the top bar -->
+        <!-- Header ID here so people can drag using the top bar -->
         <div id="welcomeheader"
-            style="
-            display: flex;
-            justify-content: space-around;
-            backdrop-filter: blur(10px);
-            background-color: rgba(0, 24, 62, 0.5);
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            font-weight: bolder;
-            cursor: move; /* Visual cue that it is draggable */
-            padding: 5px 20px;">
+            class="windowheader">
 
-            <p style="margin: 5px 0;">PersonaOS</p>
-            <p id="dateAndTimeElement" style="margin: 5px 0;">Date and Time</p>
+            <p style="margin: 5px;">PersonaOS</p>
+            <p id="dateAndTimeElement" style="margin: 5px;">Date and Time</p>
+            <div class="closebutton" id="welcomeclose"></div>
         </div>
 
         <div style="padding: 20px;">
@@ -48,7 +41,6 @@
             </p>
         </div>
     </div>
-
-    <script src="main.js"></script>
+     <script src="main.js"></script>
 </body>
 </html>

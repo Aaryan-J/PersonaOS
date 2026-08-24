@@ -1,18 +1,10 @@
-function updateTime() {
-  var currentTime = new Date().toLocaleString();
-  var timeString = document.querySelector("#dateAndTimeElement");
-  if (timeString) {
-    timeString.innerHTML = currentTime;
-  }
-}
-
-// Update time instantly, then run every second
-updateTime();
-setInterval(updateTime, 1000);
+// variables
+var welcomeScreen = document.querySelector("#welcome");
+var welcomeOpen = document.querySelector("#welcomeopen");
+var welcomeClose = document.querySelector("#welcomeclose");
 
 // Initialize dragging functionality
 dragElement(document.getElementById("welcome"));
-
 function dragElement(element) {
   if (!element) return;
 
@@ -48,7 +40,7 @@ function dragElement(element) {
     currentY = initialY - e.clientY;
     initialX = e.clientX;
     initialY = e.clientY;
-    
+
     element.style.transform = "none";
 
     // Set element's new positions
@@ -61,3 +53,28 @@ function dragElement(element) {
     document.onmousemove = null;
   }
 }
+
+function updateTime() {
+  var currentTime = new Date().toLocaleString();
+  var timeString = document.querySelector("#dateAndTimeElement");
+  if (timeString) {
+    timeString.innerHTML = currentTime;
+  }
+}
+// Update time instantly, then run every second
+updateTime();
+setInterval(updateTime, 1000);
+
+function closewindow(element) {
+  element.style.display = "none";
+}
+function openwindow(element) {
+  element.style.display = "flex";
+}
+
+welcomeOpen.addEventListener("click", function() {
+  openwindow(welcomeScreen);
+});
+welcomeClose.addEventListener("click", function() {
+  closewindow(welcomeScreen);
+});
