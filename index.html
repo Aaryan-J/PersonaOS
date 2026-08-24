@@ -1,58 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxanium">
     <title>PersonaOS</title>
 </head>
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Unica+One">
-<body style="font-family: 'Unica One'; color: whitesmoke; background-color: steelblue;">
-<h1 style="margin: 4px; padding: 4px;">PersonaOS: A personal website</h1>
-<h2>Welcome to PersonaOS</h2>
-<p>PersonaOS is an operating system based on the persona game series.<br>Even thought PersonaOS is based on the persona series, it shows my own work and interests. You can find my favorite music, games, shows, and more here.</p>
-<p>
-    <strong style="font-size: 30px;">Favorite Music:</strong><br>
-    <ol>
-        <li style="font-size: 20px;">
-            Pierce the Veil
-            <ol style="font-size: 15px;">
-                <li>Chemical Kids and Mechanical Brides<br><img style="width: 200px; object-fit: cover; border-radius: 16px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmfH6S6jgngOip8xJJqpX39RjoWkxXzyqlXakI52ddhw&s=10" alt="Chemical Kids and Mechanical Brides cover art"></li>
-                <li>King for a day<br><img style="width: 200px; object-fit: cover; border-radius: 16px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK1TmRL5vtDHsHT7TmtSr0vwamVfI3AkhuXwDEDEYWcA&s=10" alt="King for a day cover art"></li>
-                <li>A Match into Water<br><img style="width: 200px; object-fit: cover; border-radius: 16px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK1TmRL5vtDHsHT7TmtSr0vwamVfI3AkhuXwDEDEYWcA&s=10" alt="A Match into Water cover art"></li>
-            </ol>
-        </li>
-        <li style="font-size: 20px;">
-            Radiohead
-            <ol style="font-size: 15px;">
-                <li>Let Down</li>
-                <li>Jigsaw Falling into Place</li>
-                <li>India Rubber</li>
-            </ol>
-        </li>
-        <li style="font-size: 20px;">
-            ONEOKROCK
-            <ol style="font-size: 15px;">
-                <li>Wherever You Are<br><img style="width: 200px; object-fit: cover; border-radius: 16px" src="https://cdn-images.dzcdn.net/images/cover/93b1c104c83d03cb4bf2fb2a0fc672f4/1900x1900-000000-81-0-0.jpg" alt="Wherever You Are cover art"></li>
-                <li>The Beginning<br><img style="width: 200px; object-fit: cover; border-radius: 16px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwiMxGqt_8ZRqbg54ZTLZlGLORj5gRwu_IEwbEFjWRFg&s=10" alt="The Beginning Cover Art"></li>
-                <li>All Mine<br><img style="width: 200px; object-fit: cover; border-radius: 16px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwiMxGqt_8ZRqbg54ZTLZlGLORj5gRwu_IEwbEFjWRFg&s=10" alt="All Mine Cover Art"></li>
-            </ol>
-        </li>
-        <li style="font-size: 20px;">
-            My Chemical Romance
-            <ol style="font-size: 15px;">
-                <li>Black Parade</li>
-                <li>I don't Love You</li>
-                <li>Famous Last Words</li>
-            </ol>
-        </li>
-        <li style="font-size: 20px;">
-            Tame Impala
-            <ol style="font-size: 15px;">
-                <li>Let it Happen</li>
-                <li>One More Hour</li>
-                <li>Borderline</li>
-            </ol>
-        </li>
-    </ol>
-</p>
+<body style="font-family: 'Oxanium'; color: whitesmoke; background-color: #6d9ac7; margin: 0; overflow: hidden; display: flex; justify-content: center; align-items: ;">
+
+    <div id="welcome"
+        style="
+        position: absolute;
+        width: fit-content;
+        border: thick double;
+        border-radius: 12px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        background-color: #6d9ac7;"> <!-- Added background color so text doesn't overlap transparently -->
+
+        <!-- Moved the header ID here so you can drag using the top bar -->
+        <div id="welcomeheader"
+            style="
+            display: flex;
+            justify-content: space-around;
+            backdrop-filter: blur(10px);
+            background-color: rgba(0, 24, 62, 0.5);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            font-weight: bolder;
+            cursor: move; /* Visual cue that it is draggable */
+            padding: 5px 20px;">
+
+            <p style="margin: 5px 0;">PersonaOS</p>
+            <p id="dateAndTimeElement" style="margin: 5px 0;">Date and Time</p>
+        </div>
+
+        <div style="padding: 20px;">
+            <h1 style="text-align: center; font-weight: 800; font-size: 50px; margin: 10px 0;">
+                PersonaOS
+            </h1>
+            <h2 style="text-align: center; font-size: 25px; margin: 10px 0;">
+                Welcome to PersonaOS
+            </h2>
+            <p style="text-align: center; font-size: 20px; font-weight: 800; line-height: 1.5;">
+                PersonaOS is an operating system based on the persona game series.<br>In PersonaOS you will find my favorite music, games, and shows.
+            </p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
