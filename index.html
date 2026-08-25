@@ -9,13 +9,20 @@
 
     <title>PersonaOS</title>
 </head>
-<body style="font-family: 'Oxanium'; color: whitesmoke; background-color: #6d9ac7; margin: 0; overflow: hidden; display: flex; margin: 10px;">
+<body style="font-family: 'Oxanium'; color: whitesmoke; background-color: #6d9ac7; margin: 0; overflow: hidden; display: flex; flex-direction: column; margin: 10px;">
 
-    <div style="display: flex;"> <!-- Open Button for Welcome Screen -->
-        <p class="openbutton" id="welcomeopen">
+    <!-- Top bar -->
+    <div class="topbar" id="top">
+        <div style="display: flex;"> <!-- Open Button for Welcome Window -->
+            <p class="openbutton" id="welcomeopen">
                 PersonaOS
-        </p>
+            </p>
+        </div>
+        <p id="dateAndTimeElement" style="font-weight: bolder;"> Date and Time </p>
     </div>
+
+
+    <!-- WELCOME WINDOW -->
 
     <div id="welcome"
         class="window"> <!-- Added background color so text doesn't overlap transparently -->
@@ -25,7 +32,6 @@
             class="windowheader">
 
             <p style="margin: 5px;">PersonaOS</p>
-            <p id="dateAndTimeElement" style="margin: 5px;">Date and Time</p>
             <div class="closebutton" id="welcomeclose"></div>
         </div>
 
@@ -41,6 +47,39 @@
             </p>
         </div>
     </div>
-     <script src="main.js"></script>
+
+    <!-- DESKTOP APPS -->
+
+    <!-- Music App -->
+    <div class="openbutton" id="musicopen" style="font-size: 50px; padding-top: 64px; padding-left: 16px;">
+        <p>Music</p>
+    </div>
+    <div id="music"
+        class="window"> <!-- Added background color so text doesn't overlap transparently -->
+
+        <!-- Header ID here so people can drag using the top bar -->
+        <div id="musicheader"
+            class="windowheader">
+            <p style="margin: 5px;">MUSIC</p>
+            <div class="closebutton" id="musicclose"></div>
+        </div>
+
+        <div style="padding: 20px;">
+            <h1 style="text-align: center; font-weight: 800; font-size: 50px; margin: 10px 0;">
+                MUSIC
+            </h1>
+            <h2 style="text-align: center; font-size: 25px; margin: 10px 0;">
+                My favourite music and artists are mentioned below!
+            </h2>
+            <p style="text-align: center; font-size: 20px; font-weight: 800; line-height: 1.5;">
+                Artists: <br>
+                Pierce the Veil, <br>
+                My Chemical Romance, <br>
+                Radiohead
+            </p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
 </body>
 </html>

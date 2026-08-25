@@ -1,10 +1,8 @@
-// variables
-var welcomeScreen = document.querySelector("#welcome");
-var welcomeOpen = document.querySelector("#welcomeopen");
-var welcomeClose = document.querySelector("#welcomeclose");
+// ====== Universal Variables ======
+var topbar = document.querySelector("#top");
 
+// ====== Window Dragging ======
 // Initialize dragging functionality
-dragElement(document.getElementById("welcome"));
 function dragElement(element) {
   if (!element) return;
 
@@ -54,6 +52,23 @@ function dragElement(element) {
   }
 }
 
+// ====== Window Rise ======
+// variables
+var biggestIndex = 1;
+
+// function
+function addWindowTapHandling(window) {
+
+  window.addEventListener("mousedown", () => handleWindowTap(window));
+}
+function handleWindowTap(window) {
+  window.style.zIndex = biggestIndex;
+  biggestIndex++;
+  topbar.style.zIndex = biggestIndex + 1;
+  deselectApp(selectedIcon)
+}
+
+// ====== Clock ======
 function updateTime() {
   var currentTime = new Date().toLocaleString();
   var timeString = document.querySelector("#dateAndTimeElement");
@@ -65,16 +80,61 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 1000);
 
+// ====== Open/Close Window ======
 function closewindow(element) {
   element.style.display = "none";
 }
 function openwindow(element) {
   element.style.display = "flex";
+  element.style.zIndex = biggestIndex;
+  biggestIndex++;
+  topbar.style.zIndex = biggestIndex + 1;
 }
 
-welcomeOpen.addEventListener("click", function() {
-  openwindow(welcomeScreen);
-});
-welcomeClose.addEventListener("click", function() {
-  closewindow(welcomeScreen);
-});
+function openAndCloseWindow(window, openButton, closeButton) {
+
+  if (openButton) {
+    closeButton.addEventListener("click", () => closewindow(window));
+  }
+
+  if (closeButton) {
+    openButton.addEventListener("click", () => openwindow(window));
+  }
+}
+
+// ====== Apps ======-
+// variables
+var selectedIcon = undefined;
+
+// functions
+function selectApp(icon) {
+  icon.classList.add("selectedApp");
+  selectedIcon = icon;
+}
+
+function deselectApp(icon) {
+  icon.classList.remove("selectedApp");
+  selectedIcon = undefined;
+}
+
+function handleAppClick(icon) {
+  if (icon.classList.contains("selectedApp")) {
+    deselectApp(icon);
+    openwindow(window)
+  } else {
+    selectApp(icon);
+  }
+}
+
+function initializeWindow(window) {
+  var screen = document.querySelector("#" + window);
+  var closeButton = document.querySelector("#" + window + "close");
+  var openButton = document.querySelector("#" + window + "open");
+
+  addWindowTapHandling(screen)
+  dragElement(screen)
+  openAndCloseWindow(screen, openButton, closeButton)
+}
+
+initializeWindow("welcome");
+initializeWindow("music");

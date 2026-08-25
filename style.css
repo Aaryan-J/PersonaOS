@@ -38,3 +38,18 @@
     user-select: none;
     padding: 5px 20px;
 }
+
+.selectedApp {
+    font-size: 100px;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(0, 24, 62, 0.2);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+}
