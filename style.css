@@ -18,13 +18,15 @@
     position: absolute;
     top: 25%;
     left: 25%;
-    width: fit-content;
+    width: 889px;
+    height: 500px;
     border: thick double;
     border-radius: 12px;
     box-sizing: border-box;
     display: none;
     flex-direction: column;
     background-color: #6d9ac7;
+    overflow: hidden;
 }
 
 .windowheader {
