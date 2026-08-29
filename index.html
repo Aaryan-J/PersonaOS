@@ -14,7 +14,7 @@
     <!-- Top bar -->
     <div class="topbar" id="top">
         <div style="display: flex;"> <!-- Open Button for Welcome Window -->
-            <p class="openbutton" id="welcomeopen">
+            <p class="openButton" id="welcomeopen">
                 PersonaOS
             </p>
         </div>
@@ -29,10 +29,10 @@
 
         <!-- Header ID here so people can drag using the top bar -->
         <div id="welcomeheader"
-            class="windowheader">
+            class="windowHeader">
 
             <p style="margin: 5px;">PersonaOS</p>
-            <div class="closebutton" id="welcomeclose"></div>
+            <div class="closeButton" id="welcomeclose"></div>
         </div>
 
         <div style="padding: 20px;">
@@ -51,50 +51,68 @@
     <!-- DESKTOP APPS -->
 
     <!-- Music App -->
-    <div class="openbutton" id="musicopen" style="font-size: 50px; padding-top: 64px; padding-left: 16px;">
+    <div class="openButton" id="musicopen" style="font-size: 50px; padding-top: 64px; padding-left: 16px;">
         <p>Music</p>
     </div>
+
     <div id="music"
         class="window">
 
         <!-- Header ID here so people can drag using the top bar -->
         <div id="musicheader"
-            class="windowheader">
+            class="windowHeader">
             <p style="margin: 5px;">MUSIC</p>
-            <div class="closebutton" id="musicclose"></div>
+            <div class="closeButton" id="musicclose"></div>
         </div>
-        <div style="display: flex; flex-direction: row; min-height: 0; min-width: 0;">
-            <div style="padding: 20px; overflow-y: auto; flex-grow: 1;">
+        <div class="contentContainer">
+            <div class="contentWindow" id="musicContent">
                 <h1 style="text-align: center; font-weight: 800; font-size: 50px; margin: 10px 0;">
                     MUSIC
                 </h1>
                 <h2 style="text-align: center; font-size: 25px; margin: 10px 0;">
                     My favourite music and artists are mentioned below!
                 </h2>
-                <p style="text-align: center; font-size: 20px; font-weight: 800; line-height: 1.5;">
-                    Artists: <br>
-                    Pierce the Veil, <br>
-                    My Chemical Romance, <br>
-                    Radiohead, <br>
-                    test, <br>
-                    test, <br>
-                    test, <br>
-                    test, <br>
-                    test, <br>
-                    test, <br>
-                    test, <br>
-                    test, <br>
-                    test, <br>
-                    test, <br>
-                    test, <br>
-                    test, <br>
-                    test, <br>
-                </p>
+                <ul>
+                    <li tabindex="0">Pierce the Veil</li>
+                    <li tabindex="0">My Chemical Romance</li>
+                    <li tabindex="0">Radiohead</li>
+                </ul>
             </div>
 
-            <div style="width: 100px; height: auto; display: flex; flex-direction: column; background-color: rgba(0, 24, 62, 0.2); flex-shrink: 0; ">
-                <p>Albums</p>
-                <p>Playlists</p>
+            <div class="sideBar">
+                <button id="albumsButton" class="tabButton">Albums</button>
+                <button id="artistsButton" class="tabButton">Artists</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="openButton" id="mediaopen" style="font-size: 50px; padding-top: 64px; padding-left: 16px;">
+        <p>Media</p>
+    </div>
+    <div id="media"
+        class="window">
+
+        <!-- Header ID here so people can drag using the top bar -->
+        <div id="mediaheader"
+            class="windowHeader">
+            <p style="margin: 5px;">MEDIA</p>
+            <div class="closeButton" id="mediaclose"></div>
+        </div>
+        <div style="display: flex; flex-direction: row; min-height: 0; min-width: 0;">
+            <div style="padding: 20px; overflow-y: auto; flex-grow: 1;">
+                <h1 style="text-align: center; font-weight: 800; font-size: 50px; margin: 10px 0;">
+                    MEDIA
+                </h1>
+                <h2 style="text-align: center; font-size: 25px; margin: 10px 0;">
+                    My favourite media/shows are mentioned below!
+                </h2>
+                <ul>
+                    <li>Howl's Moving Castle</li>
+                    <li>La La Land</li>
+                    <li>Tokyo Ghoul</li>
+                    <li>Hunter X Hunter</li>
+                </ul>
             </div>
         </div>
     </div>

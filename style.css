@@ -1,4 +1,4 @@
-.closebutton {
+.closeButton {
     cursor: pointer;
     background-color: orangered;
     color: white;
@@ -9,7 +9,7 @@
     margin: 4px;
 }
 
-.openbutton {
+.openButton {
     font-size: 80;
     cursor: pointer;
 }
@@ -19,7 +19,8 @@
     top: 25%;
     left: 25%;
     width: 889px;
-    height: 500px;
+    min-height: 500px;
+    height: auto;
     border: thick double;
     border-radius: 12px;
     box-sizing: border-box;
@@ -29,9 +30,9 @@
     overflow: hidden;
 }
 
-.windowheader {
+.windowHeader {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: rgba(0, 24, 62, 0.5);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -41,12 +42,6 @@
     padding: 5px 20px;
 }
 
-.selectedApp {
-    font-size: 100px;
-    font-style: oblique;
-    font-weight: bold;
-}
-
 .topbar {
     display: flex;
     justify-content: space-evenly;
@@ -54,4 +49,60 @@
     background-color: rgba(0, 24, 62, 0.2);
     backdrop-filter: blur(4px);
     border-radius: 12px;
+}
+
+.sideBar {
+    width: 200px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 24, 62, 0.2);
+    flex-shrink: 0;
+    padding: 4px;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    min-height: 0;
+    min-width: 0;
+}
+
+.contentWindow {
+    padding: 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.tabButton {
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    margin: 4px 4px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 800;
+    width: 100%;
+    text-align: center;
+    text-shadow: -4px 4px 0px rgba(0, 0, 0, 0.2);
+
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
+
+    transform: skew(-10deg);
+    transform-origin: center;
+}
+
+.tabButton:hover {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    transform: scale(2) skew(0deg);
+    text-shadow: -2px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+.tabButton:active {
+    color: red;
+    transform: scale(1.06) skew(0deg);
 }
