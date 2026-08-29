@@ -1,17 +1,63 @@
+body {
+    font-family: 'Oxanium', sans-serif;
+    color: whitesmoke;
+
+    background-image: url("m2-res_480p.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    margin: 0;
+    padding: 15px;
+
+    height: 100vh;
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    user-select: none;
+}
+
+.desktopMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 2;
+    margin-top: 20px;
+}
+
+.openButton {
+    font-size: 52px;
+    font-weight: 800;
+    font-style: italic;
+    cursor: pointer;
+    user-select: none;
+    margin: 0;
+    display: inline-block;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: -3px 3px 0px black;
+    transition: transform 0.15s ease-out, color 0.15s ease-out, text-shadow 0.15s ease-out;
+}
+
+.openButton:hover {
+    transform: translateX(15px) scale(1.1) skewX(-6deg); /* Fixed translate syntax */
+    text-shadow: -4px 4px 0px black;
+}
+
 .closeButton {
     cursor: pointer;
     background-color: orangered;
     color: white;
     padding: 5px 10px;
     border-radius: 12px;
-    width: 4px;
+    width: 12px;
     height: 12px;
     margin: 4px;
-}
-
-.openButton {
-    font-size: 80;
-    cursor: pointer;
 }
 
 .window {
@@ -19,15 +65,46 @@
     top: 25%;
     left: 25%;
     width: 889px;
-    min-height: 500px;
-    height: auto;
-    border: thick double;
+    height: 500px;
+    border: solid;
     border-radius: 12px;
     box-sizing: border-box;
     display: none;
     flex-direction: column;
     background-color: #6d9ac7;
     overflow: hidden;
+    will-change: transform, opacity;
+    z-index: 10;
+}
+
+.windowOpening {
+    animation: windowOpen 0.5s cubic-bezier(0.05, 0.9, 0.1, 1) forwards;
+}
+
+.windowClosing {
+    animation: windowClose 0.5s cubic-bezier(0.7, 0, 0.84, 1) forwards; /* Fixed bezier value */
+}
+
+@keyframes windowOpen {
+    0% {
+        opacity: 0.1; /* Fixed typo: opactiy -> opacity */
+        transform: scale(0.85) skewX(-3deg) translateX(20px); /* Fixed translate syntax */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) skewX(0deg) translateY(15px);
+    }
+}
+
+@keyframes windowClose {
+    0% {
+        opacity: 1;
+        transform: scale(1) skewX(0deg) translateY(0px);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.75) skewX(-3deg) translateY(-20px);
+    }
 }
 
 .windowHeader {
@@ -44,21 +121,41 @@
 
 .topbar {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     background-color: rgba(0, 24, 62, 0.2);
-    backdrop-filter: blur(4px);
-    border-radius: 12px;
+    border-radius: 4px;
+    padding: 8px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+}
+
+.topbar #welcomeopen {
+    font-size: 20px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.topbar #dateAndTimeElement {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+    margin: 0;
 }
 
 .sideBar {
     width: 200px;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
     background-color: rgba(0, 24, 62, 0.2);
     flex-shrink: 0;
     padding: 4px;
+    align-items: center;
 }
 
 .contentContainer {
@@ -77,6 +174,7 @@
 
 .tabButton {
     height: 40px;
+    width: 80%;
     background-color: rgba(0, 0, 0, 0);
     color: white;
     border-radius: 5px;
@@ -85,24 +183,67 @@
     cursor: pointer;
     font-size: 20px;
     font-weight: 800;
-    width: 100%;
     text-align: center;
     text-shadow: -4px 4px 0px rgba(0, 0, 0, 0.2);
-
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
-
-    transform: skew(-10deg);
+    transform: skewX(-10deg);
     transform-origin: center;
 }
 
 .tabButton:hover {
     background-color: rgba(0, 0, 0, 0);
     color: white;
-    transform: scale(2) skew(0deg);
+    transform: scale(1.15) skewX(0deg);
     text-shadow: -2px 2px 0px rgba(0, 0, 0, 0.4);
 }
 
 .tabButton:active {
-    color: red;
-    transform: scale(1.06) skew(0deg);
+    transform: scale(1.06) skewX(0deg);
+}
+
+.tabButton.activeTab {
+    background-color: whitesmoke !important;
+    color: black !important;
+    transform: scale(1.1) skewX(-10deg) !important;
+    box-shadow: -5px 5px 0 black !important;
+    text-shadow: none !important;
+}
+
+.contentSwap {
+    animation: tabSwap 0.2s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes tabSwap {
+    0% {
+        opacity: 0; /* Fixed typo: opactiy -> opacity */
+        transform: translateX(15px) skewX(-4deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) skewX(0deg);
+    }
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 10px 15px;
+    margin: 8px 0;
+    background: rgba(0, 24, 62, 0.3);
+    border-left: 4px solid transparent;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    transition: transform 0.15s ease-out, background-color 0.15s ease-out, border-color 0.15s ease-out;
+}
+
+ul li:hover, ul li:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #00183e;
+    border-left: 6px solid #ff4500;
+    transform: translateX(12px) skewX(-6deg);
 }

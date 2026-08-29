@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function startDragging(e) {
+      if (e.target.classList.contains("closeButton")) return;
+
       e = e || window.event;
       e.preventDefault();
 
@@ -41,8 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
       initialX = e.clientX;
       initialY = e.clientY;
 
-      element.style.transform = "none";
-
       // Set element's new positions
       element.style.top = (element.offsetTop - currentY) + "px";
       element.style.left = (element.offsetLeft - currentX) + "px";
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ====== Window Rise ======
   // variables
-  var biggestIndex = 1;
+  var biggestIndex = 10;
 
   // function
   function addWindowTapHandling(window) {
@@ -84,22 +84,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ====== Open/Close Window ======
   function closewindow(element) {
-    element.style.display = "none";
+    if (!element) return;
+
+    element.classList.remove("windowOpening");
+    element.classList.add("windowClosing");
+
+    element.addEventListener("animationend", function handleClose() {
+      if (element.classList.contains("windowClosing")) {
+        element.style.display = "none";
+        element.classList.remove("windowClosing");
+      }
+      element.removeEventListener("animationend", handleClose);
+    });
+
   }
   function openwindow(element) {
+    if (!element) return;
     element.style.display = "flex";
     element.style.zIndex = biggestIndex;
     biggestIndex++;
     topbar.style.zIndex = biggestIndex + 1;
+
+    element.classList.remove("windowClosing");
+    element.classList.add("windowOpening")
   }
 
   function openAndCloseWindow(window, openButton, closeButton) {
 
-    if (openButton) {
-      closeButton.addEventListener("click", () => closewindow(window));
+    if (closeButton) {
+      closeButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closewindow(window);
+      });
     }
 
-    if (closeButton) {
+    if (openButton) {
       openButton.addEventListener("click", () => openwindow(window));
     }
   }
@@ -130,14 +149,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!contentArea) return;
 
+    if (btnArtists) {
+      btnArtists.classList.add("activeTab");
+    }
+
     // Html Templates
     var contentData = {
       artists: `
     <h1 style="text-align: center; font-weight: 800; font-size: 50px; margin: 10px 0;">
-        MUSIC
+        ARTISTS
     </h1>
     <h2 style="text-align: center; font-size: 25px; margin: 10px 0;">
-        My favourite music and artists are mentioned below!
+        My favourite artists are mentioned below!
     </h2>
     <ul>
         <li tabindex="0">Pierce the Veil</li>
@@ -160,12 +183,25 @@ document.addEventListener("DOMContentLoaded", function () {
     `
     };
 
+    function switchActiveTab(clickedButton, contentKey) {
+      document.querySelectorAll(".tabButton").forEach(button => {
+        button.classList.remove("activeTab");
+      });
+      clickedButton.classList.add("activeTab");
+
+      contentArea.innerHTML = contentData[contentKey];
+
+      contentArea.classList.remove("contentSwap");
+      void contentArea.offsetWidth;
+      contentArea.classList.add("contentSwap");
+    }
+
     if (btnArtists) {
-      btnArtists.addEventListener("click", () => contentArea.innerHTML = contentData.artists);
+      btnArtists.addEventListener("click", () => switchActiveTab(btnArtists, "artists"));
     }
 
     if (btnAlbums) {
-      btnAlbums.addEventListener("click", () => contentArea.innerHTML = contentData.albums);
+      btnAlbums.addEventListener("click", () => switchActiveTab(btnAlbums, "albums"));
     }
   }
 

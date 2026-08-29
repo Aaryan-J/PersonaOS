@@ -9,21 +9,26 @@
 
     <title>PersonaOS</title>
 </head>
-<body style="font-family: 'Oxanium'; color: whitesmoke; background-color: #6d9ac7; margin: 0; display: flex; flex-direction: column; margin: 10px;">
-
+<body>
     <!-- Top bar -->
     <div class="topbar" id="top">
-        <div style="display: flex;"> <!-- Open Button for Welcome Window -->
-            <p class="openButton" id="welcomeopen">
-                PersonaOS
-            </p>
-        </div>
         <p id="dateAndTimeElement" style="font-weight: bolder;"> Date and Time </p>
     </div>
 
+    <div class="desktopMenu">
+        <!-- Open Buttons -->
+        <div class="openButton" id="welcomeopen">
+            System
+        </div>
+        <div class="openButton" id="musicopen">
+            Music
+        </div>
+        <div class="openButton" id="mediaopen">
+            Media
+        </div>
+    </div>
 
     <!-- WELCOME WINDOW -->
-
     <div id="welcome"
         class="window"> <!-- Added background color so text doesn't overlap transparently -->
 
@@ -51,10 +56,6 @@
     <!-- DESKTOP APPS -->
 
     <!-- Music App -->
-    <div class="openButton" id="musicopen" style="font-size: 50px; padding-top: 64px; padding-left: 16px;">
-        <p>Music</p>
-    </div>
-
     <div id="music"
         class="window">
 
@@ -67,10 +68,10 @@
         <div class="contentContainer">
             <div class="contentWindow" id="musicContent">
                 <h1 style="text-align: center; font-weight: 800; font-size: 50px; margin: 10px 0;">
-                    MUSIC
+                    ARTISTS
                 </h1>
                 <h2 style="text-align: center; font-size: 25px; margin: 10px 0;">
-                    My favourite music and artists are mentioned below!
+                    My favourite artists are mentioned below!
                 </h2>
                 <ul>
                     <li tabindex="0">Pierce the Veil</li>
@@ -80,16 +81,14 @@
             </div>
 
             <div class="sideBar">
-                <button id="albumsButton" class="tabButton">Albums</button>
                 <button id="artistsButton" class="tabButton">Artists</button>
+                <button id="albumsButton" class="tabButton">Albums</button>
             </div>
         </div>
     </div>
 
 
-    <div class="openButton" id="mediaopen" style="font-size: 50px; padding-top: 64px; padding-left: 16px;">
-        <p>Media</p>
-    </div>
+
     <div id="media"
         class="window">
 
