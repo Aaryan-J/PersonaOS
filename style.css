@@ -1,5 +1,5 @@
 body {
-    font-family: 'Oxanium', sans-serif;
+    font-family: 'Impact', 'Oxanium', sans-serif;
     color: whitesmoke;
 
     background-image: url("m2-res_480p.gif");
@@ -23,30 +23,94 @@ body {
 .desktopMenu {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    gap: 20px;
+    gap: 0px;
+    position: absolute;
+    right: 25%;
+    top: 30%;
     z-index: 2;
-    margin-top: 20px;
 }
 
 .openButton {
-    font-size: 52px;
+    position: relative;
+    width: 300px;
+    font-family: "Impact", "Oxanium", sans-serif !important;
+    font-size: 62px;
     font-weight: 800;
     font-style: italic;
+    text-align: left;
+    box-sizing: border-box;
     cursor: pointer;
     user-select: none;
-    margin: 0;
+    margin: -2px 0;
     display: inline-block;
-    color: white;
+    color: #00d2ff;
     text-transform: uppercase;
-    text-shadow: -3px 3px 0px black;
-    transition: transform 0.15s ease-out, color 0.15s ease-out, text-shadow 0.15s ease-out;
+    letter-spacing: 2px;
+    transform: skewX(-15deg);
+    transition: transform 0.15s cubic-bezier(0.18, 0.89, 0.32, 1.28), color 0.15s ease, text-shadow 0.15s ease;
+}
+
+.desktopMenu .openButton:nth-child(1) {
+    margin-right: 40px;
+    transform: skewX(-24deg) rotate(-10deg);
+}
+.desktopMenu .openButton:nth-child(2) {
+    margin-right: 20px;
+    transform: skewX(-12deg) rotate(-1deg);
+}
+.desktopMenu .openButton:nth-child(3) {
+    margin-right: 0px;
+    transform: skewX(16deg) rotate(8deg);
+}
+
+.openButton::before {
+    content: '';
+    position: absolute;
+    top: -15%;
+    left: -15%;
+    width: 130%;
+    height: 130%;
+    clip-path: polygon(50% 15%, 85% 0%, 100% 100%, 0% 50%);
+    background-color: white;
+    z-index: -1;
+    opacity: 0;
+    transform: scaleX(0.4);
+    transform-origin: center left;
+    transition: opacity 0.15s ease-out, transform 0.15s cubic-bezier(0.18, 0.89, 0.32, 1.28), background-color 0.1s ease;
+}
+
+.openButton:hover::before {
+    opacity: 1;
+    transform: scaleX(1);
 }
 
 .openButton:hover {
-    transform: translateX(15px) scale(1.1) skewX(-6deg); /* Fixed translate syntax */
-    text-shadow: -4px 4px 0px black;
+    color: black;
+}
+
+.desktopMenu .openButton:nth-child(1):hover {
+    transform: skewX(-24deg) rotate(-10deg) scale(1.1) translateX(10px);
+}
+.desktopMenu .openButton:nth-child(2):hover {
+    transform: skewX(-12deg) rotate(-1deg) scale(1.1) translateX(10px);
+}
+.desktopMenu .openButton:nth-child(3):hover {
+    transform: skewX(16deg) rotate(8deg) scale(1.1) translateX(10px);
+}
+
+.openButton:active::before,
+.openButton.activeMenu::before {
+    background-color: #ff1e38;
+    opacity: 1;
+    transform: scaleX(1.1);
+}
+
+.openButton:active,
+.openButton.activeMenu {
+    color: white;
+    text-shadow: -3px 3px 0 black;
 }
 
 .closeButton {
@@ -181,10 +245,10 @@ body {
     border: none;
     margin: 4px 4px;
     cursor: pointer;
+    font-family: "Impact", "Oxanium", sans-serif;
     font-size: 20px;
     font-weight: 800;
     text-align: center;
-    text-shadow: -4px 4px 0px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
     transform: skewX(-10deg);
     transform-origin: center;

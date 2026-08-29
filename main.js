@@ -89,6 +89,11 @@ document.addEventListener("DOMContentLoaded", function () {
     element.classList.remove("windowOpening");
     element.classList.add("windowClosing");
 
+    var openButton = document.querySelector("#" + element.id + "open");
+    if (openButton) {
+      openButton.classList.remove("activeMenu");
+    }
+
     element.addEventListener("animationend", function handleClose() {
       if (element.classList.contains("windowClosing")) {
         element.style.display = "none";
@@ -107,6 +112,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     element.classList.remove("windowClosing");
     element.classList.add("windowOpening")
+
+    var openButton = document.querySelector("#" + element.id + "open");
+    if (openButton) {
+      openButton.classList.add("activeMenu");
+    }
   }
 
   function openAndCloseWindow(window, openButton, closeButton) {
