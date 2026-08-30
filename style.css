@@ -36,7 +36,7 @@ body {
     position: relative;
     width: 300px;
     font-family: "Impact", "Oxanium", sans-serif !important;
-    font-size: 62px;
+    font-size: 80px;
     font-weight: 800;
     font-style: italic;
     text-align: left;
@@ -78,7 +78,7 @@ body {
     opacity: 0;
     transform: scaleX(0.4);
     transform-origin: center left;
-    transition: opacity 0.15s ease-out, transform 0.15s cubic-bezier(0.18, 0.89, 0.32, 1.28), background-color 0.1s ease;
+    transition: opacity 0.15s ease-out, transform 0.15s cubic-bezier(0.18, 0.89, 0.32, 1.28), background-color 0.1s ease, filter 0.1s ease;
 }
 
 .openButton:hover::before {
@@ -88,6 +88,7 @@ body {
 
 .openButton:hover {
     color: black;
+    filter: drop-shadow(-8px 6px 0 red);
 }
 
 .desktopMenu .openButton:nth-child(1):hover {
@@ -111,31 +112,41 @@ body {
 .openButton.activeMenu {
     color: white;
     text-shadow: -3px 3px 0 black;
+    filter: drop-shadow(-8px 6px 0 white);
 }
 
 .closeButton {
     cursor: pointer;
-    background-color: orangered;
+    background-color: #ff2a2a;
     color: white;
-    padding: 5px 10px;
-    border-radius: 12px;
-    width: 12px;
-    height: 12px;
-    margin: 4px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 900;
+    width: 2%;
+    margin: 0;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+    box-shadow: -2px 2px 0px black;
+}
+
+.closeButton:hover {
+    background-color: #ff5555;
+    transform: scale(1.1);
 }
 
 .window {
     position: absolute;
     top: 25%;
-    left: 25%;
+    left: 1%;
     width: 889px;
     height: 500px;
     border: solid;
-    border-radius: 12px;
+    border-radius: 8px;
     box-sizing: border-box;
     display: none;
     flex-direction: column;
-    background-color: #6d9ac7;
+    background-color: rgba(6, 18, 38, 0.92);
+    backdrop-filter: blur(12px);
     overflow: hidden;
     will-change: transform, opacity;
     z-index: 10;
@@ -174,18 +185,26 @@ body {
 .windowHeader {
     display: flex;
     justify-content: space-between;
-    background-color: rgba(0, 24, 62, 0.5);
+    background: midnightblue;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    font-weight: bolder;
+    font-size: 20px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     cursor: grab; /* Visual cue that it is draggable */
     user-select: none;
     padding: 5px 20px;
 }
 
+.windowHeader:active {
+    cursor: grabbing;
+}
+
 .topbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: rgba(0, 24, 62, 0.2);
     border-radius: 4px;
@@ -216,9 +235,10 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 24, 62, 0.2);
+    background-color: rgba(2, 10, 24, 0.2);
+    border-right: 1px solid rgba(0, 210, 255, 0.2);
     flex-shrink: 0;
-    padding: 4px;
+    padding: 12px 8px;
     align-items: center;
 }
 
@@ -234,31 +254,35 @@ body {
     padding: 20px;
     overflow-y: auto;
     flex-grow: 1;
+    color: white;
+    border-radius: 6px;
+    background-color: midnightblue;
+    margin: 4px;
 }
 
 .tabButton {
     height: 40px;
     width: 80%;
-    background-color: rgba(0, 0, 0, 0);
-    color: white;
-    border-radius: 5px;
+    background-color: transparent;
+    color: #00d2ff;
+    border-radius: 2px;
     border: none;
-    margin: 4px 4px;
+    margin: 5px 4px 5px;
     cursor: pointer;
     font-family: "Impact", "Oxanium", sans-serif;
     font-size: 20px;
     font-weight: 800;
     text-align: center;
+    text-transform: uppercase;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
     transform: skewX(-10deg);
     transform-origin: center;
 }
 
 .tabButton:hover {
-    background-color: rgba(0, 0, 0, 0);
-    color: white;
+    background-color: white;
+    color: black;
     transform: scale(1.15) skewX(0deg);
-    text-shadow: -2px 2px 0px rgba(0, 0, 0, 0.4);
 }
 
 .tabButton:active {
@@ -266,11 +290,10 @@ body {
 }
 
 .tabButton.activeTab {
-    background-color: whitesmoke !important;
+    background-color: white !important;
     color: black !important;
     transform: scale(1.1) skewX(-10deg) !important;
-    box-shadow: -5px 5px 0 black !important;
-    text-shadow: none !important;
+    box-shadow: -5px 5px 0 red !important;
 }
 
 .contentSwap {
@@ -294,9 +317,10 @@ ul {
 }
 
 ul li {
-    padding: 10px 15px;
-    margin: 8px 0;
-    background: rgba(0, 24, 62, 0.3);
+    padding: 12px 18px;
+    margin: 10px 0;
+    background: rgba(0, 30, 65, 0.3);
+    border: 1px solid white;
     border-left: 4px solid transparent;
     cursor: pointer;
     font-size: 20px;
@@ -306,8 +330,9 @@ ul li {
 
 ul li:hover, ul li:focus {
     outline: none;
-    background: rgba(255, 255, 255, 0.9);
-    color: #00183e;
+    background: white;
+    color: black;
     border-left: 6px solid #ff4500;
-    transform: translateX(12px) skewX(-6deg);
+    transform: translateX(10px) skewX(-6deg);
+    box-shadow: -5px 5px 0 black;
 }

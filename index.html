@@ -67,19 +67,7 @@
             <div class="closeButton" id="musicclose"></div>
         </div>
         <div class="contentContainer">
-            <div class="contentWindow" id="musicContent">
-                <h1 style="text-align: center; font-weight: 700; font-size: 50px; margin: 10px 0;">
-                    ARTISTS
-                </h1>
-                <h2 style="text-align: center; font-size: 25px; margin: 10px 0;">
-                    My favourite artists are mentioned below!
-                </h2>
-                <ul>
-                    <li tabindex="0">Pierce the Veil</li>
-                    <li tabindex="0">My Chemical Romance</li>
-                    <li tabindex="0">Radiohead</li>
-                </ul>
-            </div>
+            <div class="contentWindow" id="musicContent"></div>
 
             <div class="sideBar">
                 <button id="artistsButton" class="tabButton">Artists</button>
@@ -99,8 +87,8 @@
             <p style="margin: 5px;">MEDIA</p>
             <div class="closeButton" id="mediaclose"></div>
         </div>
-        <div style="display: flex; flex-direction: row; min-height: 0; min-width: 0;">
-            <div style="padding: 20px; overflow-y: auto; flex-grow: 1;">
+        <div class="contentContainer">
+            <div class="contentWindow" id="mediaContent">
                 <h1 style="text-align: center; font-weight: 800; font-size: 50px; margin: 10px 0;">
                     MEDIA
                 </h1>
@@ -113,6 +101,11 @@
                     <li>Tokyo Ghoul</li>
                     <li>Hunter X Hunter</li>
                 </ul>
+            </div>
+
+            <div class="sideBar">
+                <button id="artistsButton" class="tabButton">Artists</button>
+                <button id="albumsButton" class="tabButton">Albums</button>
             </div>
         </div>
     </div>

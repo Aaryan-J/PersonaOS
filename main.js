@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.style.zIndex = biggestIndex;
     biggestIndex++;
     topbar.style.zIndex = biggestIndex + 1;
-    deselectApp(selectedIcon)
   }
 
   // ====== Clock ======
@@ -152,19 +151,52 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeWindow("music");
   initializeWindow("media")
 
-  function initializeMusicTabs() {
-    var contentArea = document.querySelector("#musicContent");
-    var btnArtists = document.querySelector("#artistsButton");
-    var btnAlbums = document.querySelector("#albumsButton");
-
+  function initializeTabs(config) {
+    var contentArea = document.querySelector(config.contentAreaSelector);
     if (!contentArea) return;
 
-    if (btnArtists) {
-      btnArtists.classList.add("activeTab");
+    var tabButtons = {};
+    var contentDataMap = config.tabsData;
+
+    Object.keys(contentDataMap).forEach(key => {
+      var btn = document.querySelector(config.buttonSelectors[key]);
+      if (btn) {
+        tabButtons[key] = btn;
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          var targetHTML = contentDataMap[key];
+          switchActiveTab(btn, targetHTML);
+        });
+      }
+    });
+
+    if (config.defaultTab && tabButtons[config.defaultTab]) {
+      tabButtons[config.defaultTab].classList.add("activeTab");
+      contentArea.innerHTML = config.tabsData[config.defaultTab];
     }
 
-    // Html Templates
-    var contentData = {
+    function switchActiveTab(clickedButton, htmlContent) {
+      Object.values(tabButtons).forEach(button => {
+        button.classList.remove("activeTab");
+      });
+      clickedButton.classList.add("activeTab");
+      contentArea.innerHTML = htmlContent;
+
+      contentArea.classList.remove("contentSwap");
+      void contentArea.offsetWidth;
+      contentArea.classList.add("contentSwap");
+    }
+  }
+
+  // Initialize music tabs
+  initializeTabs({
+    contentAreaSelector: "#musicContent",
+    defaultTab: "artists",
+    buttonSelectors: {
+      artists: "#artistsButton",
+      albums: "#albumsButton"
+    },
+    tabsData: {
       artists: `
     <h1 style="text-align: center; font-weight: 800; font-size: 50px; margin: 10px 0;">
         ARTISTS
@@ -191,30 +223,6 @@ document.addEventListener("DOMContentLoaded", function () {
         <li tabindex="0">OKComputer</li>
     </ul>
     `
-    };
-
-    function switchActiveTab(clickedButton, contentKey) {
-      document.querySelectorAll(".tabButton").forEach(button => {
-        button.classList.remove("activeTab");
-      });
-      clickedButton.classList.add("activeTab");
-
-      contentArea.innerHTML = contentData[contentKey];
-
-      contentArea.classList.remove("contentSwap");
-      void contentArea.offsetWidth;
-      contentArea.classList.add("contentSwap");
     }
-
-    if (btnArtists) {
-      btnArtists.addEventListener("click", () => switchActiveTab(btnArtists, "artists"));
-    }
-
-    if (btnAlbums) {
-      btnAlbums.addEventListener("click", () => switchActiveTab(btnAlbums, "albums"));
-    }
-  }
-
-  initializeMusicTabs();
-
+  });
 });
