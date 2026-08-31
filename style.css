@@ -27,7 +27,7 @@ body {
     justify-content: center;
     gap: 0px;
     position: absolute;
-    right: 25%;
+    right: 36%;
     top: 30%;
     z-index: 2;
 }
@@ -204,7 +204,7 @@ body {
 
 .topbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: rgba(0, 24, 62, 0.2);
     border-radius: 4px;

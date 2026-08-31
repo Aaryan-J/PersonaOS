@@ -219,8 +219,50 @@ document.addEventListener("DOMContentLoaded", function () {
     </h2>
     <ul>
         <li tabindex="0">The King of Limbs</li>
-        <li tabindex="0">The Velvet Underground</li>
+        <li tabindex="0">Pablo Honey</li>
         <li tabindex="0">OKComputer</li>
+    </ul>
+    `
+    }
+  });
+
+  // Initialize media tabs
+  initializeTabs({
+    contentAreaSelector: "#mediaContent",
+    defaultTab: "movies",
+    buttonSelectors: {
+      movies: "#moviesButton",
+      anime: "#animeButton"
+    },
+    tabsData: {
+      anime: `
+    <h1 style="text-align: center; font-size: 50px; margin: 10px 0;">
+        ANIME
+    </h1>
+    <h2 style="text-align: center; font-size: 25px; margin: 10px 0;">
+        Below are some of my top animes OAT. Hope u get some good recommendations!
+    </h2>
+    <ul>
+        <li tabindex="0">Your Lie in April</li>
+        <li tabindex="0">Tokyo Ghoul</li>
+        <li tabindex="0">That Time I got Reincarnated as a Slime</li>
+    </ul>
+    `,
+      movies: `
+    <h1 style="text-align: center; font-weight: 800; font-size: 50px; margin: 10px 0;">
+        MOVIES
+    </h1>
+    <h2 style="text-align: center; font-size: 25px; margin: 10px 0;">
+        Hope u can find something you like here!
+    </h2>
+    <ul>
+        <li tabindex="0">La La Land</li>
+        <li tabindex="0">Howl's Moving Castle</li>
+        <li tabindex="0">BLAME!</li>
+        <li tabindex="0">Weathering with You</li>
+        <li tabindex="0">Your Name</li>
+        <li tabindex="0">Dead Poet's Society</li>
+        <li tabindex="0">500 Days of Summer</li>
     </ul>
     `
     }
