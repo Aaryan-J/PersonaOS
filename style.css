@@ -339,3 +339,29 @@ ul li:hover, ul li:focus {
     transform: translateX(10px) skewX(-6deg);
     box-shadow: -5px 5px 0 black;
 }
+
+.splashScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("splash_screen.GIF");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 99999;
+    cursor: pointer;
+    transition: opacity 0.6s cubic-bezier(0.7, 0, 0.84, 1), transform 0.6s cubic-bezier(0.7, 0, 0.84, 1);
+}
+
+.splashFadeOut {
+    opacity: 0;
+    transform: scale(1.1);
+    pointer-events: none;
+}
+
+@keyframes splashBlink {
+    0% {opacity: 0.2%;}
+    100% {opacity: 1;}
+}

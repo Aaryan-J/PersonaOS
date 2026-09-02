@@ -123,16 +123,35 @@ document.addEventListener("DOMContentLoaded", function () {
     if (closeButton) {
       closeButton.addEventListener("click", (e) => {
         e.stopPropagation();
+        playSelectSFX();
         closewindow(window);
       });
     }
 
     if (openButton) {
-      openButton.addEventListener("click", () => openwindow(window));
+      openButton.addEventListener("mouseenter", playHoverSFX);
+      openButton.addEventListener("click", () => {
+        playSelectSFX();
+        openwindow(window);
+      });
     }
   }
 
-  // ====== Apps ======-
+  // ====== Sound engine ======
+  var hoverSFX = new Audio("audio/hover.mp3");
+  var selectSFX = new Audio("audio/select.mp3");
+
+  function playHoverSFX() {
+    hoverSFX.currentTime = 0;
+    hoverSFX.play().catch(function () { });
+  }
+
+  function playSelectSFX() {
+    selectSFX.currentTime = 0;
+    selectSFX.play().catch(function () { });
+  }
+
+  // ====== Apps ======
   // variables
   var selectedIcon = undefined;
 
@@ -162,8 +181,10 @@ document.addEventListener("DOMContentLoaded", function () {
       var btn = document.querySelector(config.buttonSelectors[key]);
       if (btn) {
         tabButtons[key] = btn;
+        btn.addEventListener("mouseenter", playHoverSFX);
         btn.addEventListener("click", (e) => {
           e.stopPropagation();
+          playSelectSFX();
           var targetHTML = contentDataMap[key];
           switchActiveTab(btn, targetHTML);
         });
@@ -267,4 +288,25 @@ document.addEventListener("DOMContentLoaded", function () {
     `
     }
   });
+
+  var splash = document.querySelector("#splashScreen");
+
+  function dismissSplash() {
+    if (!splash || splash.classList.contains("splashFadeOut")) return;
+
+    splash.classList.add("splashFadeOut");
+    setTimeout(function () {
+      if (splash.parentNode) {
+        splash.parentNode.removeChild(splash);
+      }
+    }, 600);
+
+    document.removeEventListener("keydown", dismissSplash);
+    document.removeEventListener("click", dismissSplash);
+  }
+
+  if (splash) {
+    document.addEventListener("keydown", dismissSplash);
+    document.addEventListener("click", dismissSplash);
+  }
 });
