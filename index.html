@@ -73,17 +73,29 @@
             <div class="closeButton" id="musicclose"></div>
         </div>
         <div class="contentContainer">
-            <div class="contentWindow" id="musicContent"></div>
+            <div class="contentWindow" id="musicContent">
+                <div class="playerDisplay">
+                    <h2 id="nowPlayingTitle">SELECT A TRACK</h2>
+                    <p id="nowPlayingArtist">PersonaOS Player</p>
+                    <div class="progressContainer">
+                        <div class="progressBar" id="songProgressBar"></div>
+                    </div>
+                </div>
+                <div class="playerControls">
+                    <button class="controlButton" id="prevTrackButton">◀◀</button>
+                    <button class="controlButton" id="playPauseButton">PLAY</button>
+                    <button class="controlButton" id="nextTrackButton">▶▶</button>
+                </div>
+            </div>
 
             <div class="sideBar">
-                <button id="artistsButton" class="tabButton">Artists</button>
-                <button id="albumsButton" class="tabButton">Albums</button>
+                <ul class="trackList" id="trackListContainer"></ul>
             </div>
         </div>
     </div>
 
 
-
+    <!-- Media App -->
     <div id="media"
         class="window">
 

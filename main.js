@@ -209,44 +209,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Initialize music tabs
-  initializeTabs({
-    contentAreaSelector: "#musicContent",
-    defaultTab: "artists",
-    buttonSelectors: {
-      artists: "#artistsButton",
-      albums: "#albumsButton"
-    },
-    tabsData: {
-      artists: `
-    <h1 style="text-align: center; font-weight: 800; font-size: 50px; margin: 10px 0;">
-        ARTISTS
-    </h1>
-    <h2 style="text-align: center; font-size: 25px; margin: 10px 0;">
-        My favourite artists are mentioned below!
-    </h2>
-    <ul>
-        <li tabindex="0">Pierce the Veil</li>
-        <li tabindex="0">My Chemical Romance</li>
-        <li tabindex="0">Radiohead</li>
-    </ul>
-    `,
-      albums: `
-    <h1 style="text-align: center; font-weight: 800; font-size: 50px; margin: 10px 0;">
-        ALBUMS
-    </h1>
-    <h2 style="text-align: center; font-size: 25px; margin: 10px 0;">
-        My favourite albums are mentioned below!
-    </h2>
-    <ul>
-        <li tabindex="0">The King of Limbs</li>
-        <li tabindex="0">Pablo Honey</li>
-        <li tabindex="0">OKComputer</li>
-    </ul>
-    `
-    }
-  });
-
   // Initialize media tabs
   initializeTabs({
     contentAreaSelector: "#mediaContent",
@@ -289,6 +251,87 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // ====== Music App ======
+  var playlist = [
+    { title: "Color Your Night", artist: "Lotus Juice", src: "" },
+    { title: "It's Going Down Now", artist: "Azumi Takahashi", src: "" },
+    { title: "Mass Destruction", artist: "Lotus Juice", src: "" }
+  ]
+
+  var currentSongIndex = 0;
+  var bgAudio = new Audio();
+
+  var playPauseButton = document.querySelector("#playPauseButton");
+  var prevButton = document.querySelector("#prevTrackButton");
+  var nextButton = document.querySelector("#nextTrackButton");
+  var titleElement = document.querySelector("#nowPlayingTitle");
+  var artistElement = document.querySelector("#nowPlayingArtist");
+  var progressBar = document.querySelector("#songProgressBar");
+  var trackListContainer = document.querySelector("#trackListContainer");
+
+  function renderTrackList() {
+    if (!trackListContainer) return;
+    trackListContainer.innerHTML = "";
+    playlist.forEach(function (track, idx) {
+      var li = document.createElement("li");
+      li.textContent = track.title + " - " + track.artist;
+      li.tabIndex = 0;
+      if (idx === currentSongIndex) li.classList.add("activeTrack");
+
+      li.addEventListener("mouseenter", playHoverSFX);
+      li.addEventListener("click", function () {
+        playSelectSFX();
+        loadTrack(idx);
+        bgAudio.play();
+        playPauseButton.textContent = "PAUSE";
+      });
+      trackListContainer.appendChild(li);
+    });
+  }
+
+  function loadTrack(index) {
+    currentSongIndex = index;
+    bgAudio.src = playlist[index].src;
+    titleElement.textContent = playlist[index].title;
+    artistElement.textContent = playlist[index].artist;
+    renderTrackList();
+  }
+
+  function togglePlay() {
+    if (!bgAudio.src) loadTrack(0);
+    if (bgAudio.paused) {
+      bgAudio.play();
+      playPauseButton.textContent = "PAUSE";
+    } else {
+      bgAudio.pause();
+      playPauseButton.textContent = "PLAY";
+    }
+  }
+
+  if (playPauseButton) {
+    playPauseButton.addEventListener("click", togglePlay);
+    nextButton.addEventListener("click", function() {
+      loadTrack((currentSongIndex + 1) % playlist.length);
+      bgAudio.play();
+      playPauseButton.textContent = "PAUSE";
+    });
+    prevButton.addEventListener("click", function() {
+      loadTrack((currentSongIndex - 1 + playlist.length) % playlist.length);
+      bgAudio.play();
+      playPauseButton.textContent = "PAUSE";
+    });
+
+    bgAudio.addEventListener("timeupdate", function () {
+      if (bgAudio.duration) {
+        var pct = (bgAudio.currentTime / bgAudio.duration) * 100;
+        progressBar.style.width = pct + "%";
+      }
+    });
+
+    renderTrackList();
+  }
+
+  // ====== Splash Screen ======
   var splash = document.querySelector("#splashScreen");
 
   function dismissSplash() {
