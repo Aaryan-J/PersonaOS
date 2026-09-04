@@ -168,7 +168,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   initializeWindow("welcome");
   initializeWindow("music");
-  initializeWindow("media")
+  initializeWindow("media");
+  initializeWindow("calendar");
 
   function initializeTabs(config) {
     var contentArea = document.querySelector(config.contentAreaSelector);
@@ -352,4 +353,27 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("keydown", dismissSplash);
     document.addEventListener("click", dismissSplash);
   }
+
+  // ====== Calendar Tracker ======
+  function updateCalendarDisplay() {
+    var dateEl = document.querySelector("#calendarDateStr");
+    var dayEl = document.querySelector("#calendarDayStr");
+    if (!dateEl || !dayEl) return;
+
+    var now = new Date();
+    var month = String(now.getMonth() + 1).padStart(2, '0');
+    var date = String(now.getDate()).padStart(2, '0');
+    var days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+
+    dateEl.textContent = month + "/" + date;
+    dayEl.textContent = days[now.getDay()];
+  }
+
+  updateCalendarDisplay();
+
+  var taskItems = document.querySelectorAll("#taskListContainer li");
+  taskItems.forEach(function (item) {
+    item.addEventListener("mouseenter", playHoverSFX);
+    item.addEventListener("click", playSelectSFX);
+  });
 });

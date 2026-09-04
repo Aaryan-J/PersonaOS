@@ -65,6 +65,10 @@ body {
     margin-right: 0px;
     transform: skewX(16deg) rotate(8deg);
 }
+.desktopMenu .openButton:nth-child(4) {
+    margin-right: 0px;
+    transform: skewX(16deg) rotate(-4deg);
+}
 
 .openButton::before {
     content: '';
@@ -101,6 +105,10 @@ body {
 .desktopMenu .openButton:nth-child(3):hover {
     transform: skewX(16deg) rotate(8deg) scale(1.1) translateX(10px);
 }
+.desktopMenu .openButton:nth-child(4):hover {
+    transform: skewX(16deg) rotate(-4deg) scale(1.1) translateX(10px);
+}
+
 
 .openButton:active::before,
 .openButton.activeMenu::before {
@@ -455,4 +463,39 @@ ul li:hover, ul li:focus {
     border-left: 6px solid #ff4500;
     transform: translateX(10px) skewX(-6deg);
     box-shadow: -5px 5px 0 black;
+}
+
+.calendarHeaderDisplay {
+    background: rgba(0, 15, 35, 0.8);
+    border-left: 6px solid #00d2ff;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+#calendarDateStr {
+    font-size: 60px;
+    color: white;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: 2px;
+}
+
+#calendarDayStr {
+    font-size: 24px;
+    color: #ff1e38;
+    margin: 5px 0 0 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.trackerSection h3 {
+    font-size: 22px;
+    color: #00d2ff;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.taskList li {
+    font-size: 16px;
+    padding: 10px 14px;
 }

@@ -33,6 +33,9 @@
         <div class="openButton" id="mediaopen">
             Media
         </div>
+        <div class="openButton" id="calendaropen">
+            Calendar
+        </div>
     </div>
 
     <!-- WELCOME WINDOW -->
@@ -63,8 +66,7 @@
     <!-- DESKTOP APPS -->
 
     <!-- Music App -->
-    <div id="music"
-        class="window">
+    <div id="music" class="window">
 
         <!-- Header ID here so people can drag using the top bar -->
         <div id="musicheader"
@@ -94,14 +96,11 @@
         </div>
     </div>
 
-
     <!-- Media App -->
-    <div id="media"
-        class="window">
+    <div id="media" class="window">
 
         <!-- Header ID here so people can drag using the top bar -->
-        <div id="mediaheader"
-            class="windowHeader">
+        <div id="mediaheader" class="windowHeader">
             <p style="margin: 5px;">MEDIA</p>
             <div class="closeButton" id="mediaclose"></div>
         </div>
@@ -111,6 +110,32 @@
             <div class="sideBar">
                 <button id="moviesButton" class="tabButton">Movies</button>
                 <button id="animeButton" class="tabButton">Anime</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar App -->
+    <div id="calendar" class="window">
+
+        <!-- Header ID here so people can drag using the top bar -->
+        <div id="calendarheader" class="windowHeader">
+            <p style="margin: 5px;">CALENDAR</p>
+            <div class="closeButton" id="calendarclose"></div>
+        </div>
+        <div class="contentContainer">
+            <div class="contentWindow" id="calendarContent">
+                <div class="calendarHeaderDisplay">
+                    <h1 id="calendarDateStr">--/--</h1>
+                    <h1 id="calendarDayStr">---</h1>
+                </div>
+                <div class="trackerSection">
+                    <h3>DAILY OBJECTIVES</h3>
+                    <ul class="taskList" id="taskListContainer">
+                        <li tabindex="0">Study in the Library</li>
+                        <li tabindex="0">Explore Tartarus</li>
+                        <li tabindex="0">Work Part-time</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
