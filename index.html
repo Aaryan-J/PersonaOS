@@ -34,7 +34,7 @@
             Media
         </div>
         <div class="openButton" id="calendaropen">
-            Calendar
+            Dates
         </div>
     </div>
 
@@ -119,7 +119,7 @@
 
         <!-- Header ID here so people can drag using the top bar -->
         <div id="calendarheader" class="windowHeader">
-            <p style="margin: 5px;">CALENDAR</p>
+            <p style="margin: 5px;">DATES</p>
             <div class="closeButton" id="calendarclose"></div>
         </div>
         <div class="contentContainer">
@@ -130,11 +130,13 @@
                 </div>
                 <div class="trackerSection">
                     <h3>DAILY OBJECTIVES</h3>
-                    <ul class="taskList" id="taskListContainer">
-                        <li tabindex="0">Study in the Library</li>
-                        <li tabindex="0">Explore Tartarus</li>
-                        <li tabindex="0">Work Part-time</li>
-                    </ul>
+
+                    <div class="taskInputContainer">
+                        <input type="text" id="taskInput" placeholder="Enter new objective..." maxlength="40">
+                        <button id="addTaskButton" class="controlButton">+ ADD</button>
+                    </div>
+
+                    <ul class="taskList" id="taskListContainer"></ul>
                 </div>
             </div>
         </div>

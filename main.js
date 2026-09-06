@@ -355,6 +355,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ====== Calendar Tracker ======
+  var tasks = [
+    "Study in the Library",
+    "Work part-time",
+    "Explore the City"
+  ]
+
+  var taskListContainer = document.querySelector("#taskListContainer");
+  var taskInput = document.querySelector("#taskInput");
+  var addTaskButton = document.querySelector("#addTaskButton");
+
   function updateCalendarDisplay() {
     var dateEl = document.querySelector("#calendarDateStr");
     var dayEl = document.querySelector("#calendarDayStr");
@@ -369,11 +379,61 @@ document.addEventListener("DOMContentLoaded", function () {
     dayEl.textContent = days[now.getDay()];
   }
 
-  updateCalendarDisplay();
+  function renderTasks() {
+    if(!taskListContainer) return;
+    taskListContainer.innerHTML = "";
 
-  var taskItems = document.querySelectorAll("#taskListContainer li");
-  taskItems.forEach(function (item) {
-    item.addEventListener("mouseenter", playHoverSFX);
-    item.addEventListener("click", playSelectSFX);
-  });
+    tasks.forEach(function (taskText, index) {
+      var li = document.createElement("li");
+      li.tabIndex = 0;
+
+      var textSpan = document.createElement("span");
+      textSpan.textContent = taskText;
+
+      var deleteButton = document.createElement("button");
+      deleteButton.className = "deleteTaskButton";
+      deleteButton.textContent = "x";
+      deleteButton.title = "Delete task";
+
+      deleteButton.addEventListener("click", function(e) {
+        e.stopPropagation();
+        playSelectSFX();
+        tasks.splice(index, 1);
+        renderTasks();
+      });
+
+      li.appendChild(textSpan);
+      li.appendChild(deleteButton);
+
+      li.addEventListener("mouseenter", playHoverSFX);
+      li.addEventListener("click", playSelectSFX);
+
+      taskListContainer.appendChild(li);
+    })
+  }
+
+  function addNewTask() {
+    if (!taskInput) return;
+    var value = taskInput.value.trim();
+    if (value !== "") {
+      playSelectSFX();
+      tasks.push(value);
+      taskInput.value = "";
+      renderTasks();
+    }
+  }
+
+  if (addTaskButton && taskInput) {
+    addTaskButton.addEventListener("mouseenter", playHoverSFX);
+    addTaskButton.addEventListener("click", addNewTask);
+
+    taskInput.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        addNewTask();
+      }
+    });
+  }
+
+  updateCalendarDisplay();
+  renderTasks();
 });

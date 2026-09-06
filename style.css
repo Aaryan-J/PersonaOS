@@ -21,6 +21,7 @@ body {
     user-select: none;
 }
 
+/* main menu */
 .desktopMenu {
     display: flex;
     flex-direction: column;
@@ -44,30 +45,13 @@ body {
     box-sizing: border-box;
     cursor: pointer;
     user-select: none;
-    margin: -2px 0;
+    margin: -15px 0;
     display: inline-block;
     color: #00d2ff;
     text-transform: uppercase;
     letter-spacing: 2px;
     transform: skewX(-15deg);
     transition: transform 0.15s cubic-bezier(0.18, 0.89, 0.32, 1.28), color 0.15s ease, text-shadow 0.15s ease;
-}
-
-.desktopMenu .openButton:nth-child(1) {
-    margin-right: 40px;
-    transform: skewX(-24deg) rotate(-10deg);
-}
-.desktopMenu .openButton:nth-child(2) {
-    margin-right: 20px;
-    transform: skewX(-12deg) rotate(-1deg);
-}
-.desktopMenu .openButton:nth-child(3) {
-    margin-right: 0px;
-    transform: skewX(16deg) rotate(8deg);
-}
-.desktopMenu .openButton:nth-child(4) {
-    margin-right: 0px;
-    transform: skewX(16deg) rotate(-4deg);
 }
 
 .openButton::before {
@@ -96,19 +80,35 @@ body {
     filter: drop-shadow(-8px 6px 0 red);
 }
 
+.desktopMenu .openButton:nth-child(1) {
+    margin-right: 40px;
+    transform: skewX(-24deg) rotate(-4deg);
+}
+.desktopMenu .openButton:nth-child(2) {
+    margin-right: 20px;
+    transform: skewX(-12deg) rotate(-6deg);
+}
+.desktopMenu .openButton:nth-child(3) {
+    margin-right: 0px;
+    transform: skewX(16deg) rotate(5deg);
+}
+.desktopMenu .openButton:nth-child(4) {
+    margin-right: 0px;
+    transform: skewX(16deg) rotate(-4deg);
+}
+
 .desktopMenu .openButton:nth-child(1):hover {
-    transform: skewX(-24deg) rotate(-10deg) scale(1.1) translateX(10px);
+    transform: skewX(-24deg) rotate(-4deg) scale(1.1) translateX(10px);
 }
 .desktopMenu .openButton:nth-child(2):hover {
-    transform: skewX(-12deg) rotate(-1deg) scale(1.1) translateX(10px);
+    transform: skewX(-12deg) rotate(-6deg) scale(1.1) translateX(10px);
 }
 .desktopMenu .openButton:nth-child(3):hover {
-    transform: skewX(16deg) rotate(8deg) scale(1.1) translateX(10px);
+    transform: skewX(16deg) rotate(5deg) scale(1.1) translateX(10px);
 }
 .desktopMenu .openButton:nth-child(4):hover {
     transform: skewX(16deg) rotate(-4deg) scale(1.1) translateX(10px);
 }
-
 
 .openButton:active::before,
 .openButton.activeMenu::before {
@@ -124,6 +124,7 @@ body {
     filter: drop-shadow(-8px 6px 0 white);
 }
 
+/* window */
 .closeButton {
     cursor: pointer;
     background-color: #ff2a2a;
@@ -211,6 +212,7 @@ body {
     cursor: grabbing;
 }
 
+/* topbar */
 .topbar {
     display: flex;
     justify-content: center;
@@ -239,6 +241,7 @@ body {
     margin: 0;
 }
 
+/* sidebar */
 .sideBar {
     width: 200px;
     height: 100%;
@@ -251,6 +254,7 @@ body {
     align-items: center;
 }
 
+/* content */
 .contentContainer {
     display: flex;
     flex-direction: row;
@@ -322,6 +326,7 @@ body {
     }
 }
 
+/* list */
 ul {
     list-style: none;
     padding: 0;
@@ -348,6 +353,7 @@ ul li:hover, ul li:focus {
     box-shadow: -5px 5px 0 black;
 }
 
+/* splash screen */
 .splashScreen {
     position: fixed;
     top: 0;
@@ -374,6 +380,7 @@ ul li:hover, ul li:focus {
     100% {opacity: 1;}
 }
 
+/* music player */
 .playerDisplay {
     background: rgba(0, 15, 35, 0.7);
     border: 1px solid #00d2ff;
@@ -465,6 +472,7 @@ ul li:hover, ul li:focus {
     box-shadow: -5px 5px 0 black;
 }
 
+/* calendar */
 .calendarHeaderDisplay {
     background: rgba(0, 15, 35, 0.8);
     border-left: 6px solid #00d2ff;
@@ -498,4 +506,69 @@ ul li:hover, ul li:focus {
 .taskList li {
     font-size: 16px;
     padding: 10px 14px;
+}
+
+/* task input */
+.taskInputContainer {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#taskInput {
+    flex-grow: 1;
+    background: rgba(0, 15, 35, 0.7);
+    border: 1px solid #00d2ff;
+    color: white;
+    font-size: 16px;
+    padding: 10px 14px;
+    border-radius: 2px;
+    outline: none;
+    transform: skewX(-10deg);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#taskInput:focus {
+    border-color: #ff1e38;
+    box-shadow: -3px 3px 0 #00d2ff;
+}
+
+#taskInput::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}
+
+#addTaskButton {
+    font-size: 18px;
+    padding: 8px 20px;
+    letter-spacing: 1px;
+}
+
+.taskList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    padding: 10px 14px;
+    margin: 8px 0;
+}
+
+.deleteTaskButton {
+    background: transparent;
+    border: none;
+    color: #ff1e38;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 2px 8px;
+    opacity: 0.6;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.taskList li:hover .deleteTaskButton {
+    opacity: 1;
+    color: black;
+}
+
+.deleteTaskButton:hover {
+    transform: scale(1.1);
 }
