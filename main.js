@@ -355,15 +355,22 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ====== Calendar Tracker ======
-  var tasks = [
+  var defaultTasks = [
     "Study in the Library",
     "Work part-time",
     "Explore the City"
   ]
 
+  var savedTasks = localStorage.getItem("personaOS_tasks");
+  var tasks = savedTasks ? JSON.parse(savedTasks) : defaultTasks;
+
   var taskListContainer = document.querySelector("#taskListContainer");
   var taskInput = document.querySelector("#taskInput");
   var addTaskButton = document.querySelector("#addTaskButton");
+
+  function saveTasksToStorage() {
+    localStorage.setItem("personaOS_tasks", JSON.stringify(tasks));
+  }
 
   function updateCalendarDisplay() {
     var dateEl = document.querySelector("#calendarDateStr");
@@ -399,6 +406,7 @@ document.addEventListener("DOMContentLoaded", function () {
         e.stopPropagation();
         playSelectSFX();
         tasks.splice(index, 1);
+        saveTasksToStorage();
         renderTasks();
       });
 
@@ -418,6 +426,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (value !== "") {
       playSelectSFX();
       tasks.push(value);
+      saveTasksToStorage();
       taskInput.value = "";
       renderTasks();
     }
