@@ -254,9 +254,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ====== Music App ======
   var playlist = [
-    { title: "Color Your Night", artist: "Lotus Juice", src: "" },
-    { title: "It's Going Down Now", artist: "Azumi Takahashi", src: "" },
-    { title: "Mass Destruction", artist: "Lotus Juice", src: "" }
+    { title: "Full Moon Full Life", artist: "Azumi Takahashi & Lotus Juice", src: "audio/Music/01 Full Moon Full Life.mp3"},
+    { title: "Aria of the Soul", artist: "Haruko Komiya", src: "audio/Music/02 Aria of the Soul.mp3" },
+    { title: "This Mysterious Feeling", artist: "Azumi Takahashi", src: "audio/Music/03 This Mysterious Feeling.mp3" },
+    { title: "Want To Be Close -Reload-", artist: "Azumi Takahashi", src: "audio/Music/04 Want To Be Close -Reload-.mp3" },
+    { title: "Peace -Reload-", artist: "Azumi Takahashi", src: "audio/Music/09 Peace -Reload-.mp3" },
+    { title: "When The Moon's Reaching Out Starts -Reload-", artist: "Azumi Takahashi", src: "audio/Music/10 When The Moon’s Reaching Out Stars -Reload-.mp3" },
+    { title: "Iwatodai Dorm -Reload-", artist: "Lotus Juice", src: "audio/Music/11 Iwatodai Dorm -Reload-.mp3" },
+    { title: "Mass Destruction -Reload-", artist: "Azumi Takahashi & Lotus Juice", src: "audio/Music/14 Mass Destruction -Reload-.mp3" },
+    { title: "Color Your Night", artist: "Azumi Takahashi & Lotus Juice", src: "audio/Music/16 Color Your Night.mp3" },
+    { title: "Deep Breath Deep Breath -Reload-", artist: "Lotus Juice", src: "audio/Music/17 Deep Breath Deep Breath -Reload-.mp3" },
+    { title: "Paulownia Mall -Reload-", artist: "Azumi Takahashi", src: "audio/Music/19 Paulownia Mall -Reload-.mp3" },
+    { title: "The Meaning of Armbands", artist: "Lotus Juice", src: "audio/Music/20 The Meaning of Armbands.mp3" },
+    { title: "It's Going Down Now", artist: "Azumi Takahashi & Lotus Juice", src: "audio/Music/30 It’s Going Down Now.mp3" },
   ]
 
   var currentSongIndex = 0;
@@ -295,16 +305,19 @@ document.addEventListener("DOMContentLoaded", function () {
     bgAudio.src = playlist[index].src;
     titleElement.textContent = playlist[index].title;
     artistElement.textContent = playlist[index].artist;
+    bgMusic.pause();
     renderTrackList();
   }
 
   function togglePlay() {
     if (!bgAudio.src) loadTrack(0);
     if (bgAudio.paused) {
+      bgMusic.pause();
       bgAudio.play();
       playPauseButton.textContent = "PAUSE";
     } else {
       bgAudio.pause();
+      bgMusic.play();
       playPauseButton.textContent = "PLAY";
     }
   }
@@ -331,6 +344,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     renderTrackList();
   }
+
+  // ====== BG Music ======
+  var bgMusic = new Audio("audio/Music/01 Full Moon Full Life.mp3");
+  bgMusic.loop = true;
+  bgMusic.volume = 0.7;
+
+  function startBGM() {
+    bgMusic.play().catch(function () { });
+    document.removeEventListener("click", startBGM);
+    document.removeEventListener("keydown", startBGM);
+  }
+
+  document.addEventListener("click", startBGM);
+  document.addEventListener("keydown", startBGM);
+
+
 
   // ====== Splash Screen ======
   var splash = document.querySelector("#splashScreen");
